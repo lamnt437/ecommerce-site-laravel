@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->tinyInteger('seller_category_id');
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
