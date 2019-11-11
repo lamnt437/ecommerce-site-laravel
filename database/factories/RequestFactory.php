@@ -17,11 +17,22 @@ $factory->define(Request::class, function (Faker $faker) {
     // $table->timestamps();
     return [
         'user_id' => function() {
-            $users = User::all()->toArray();
-            $count = count($users);
-            $rand_index = rand(0, $count - 1);
-            $user = $users[$rand_index];
-            return $user['id'];
+            // $users = User::all()->toArray();
+            // $count = count($users);
+            // $rand_index = rand(0, $count - 1);
+            // $user = $users[$rand_index];
+            // return $user['id'];
+
+            $users = User::all();
+            $count = $users->count();
+
+            // find an user with no request
+            do {
+                $rand_index = rand(0, $count - 1);
+                $user = $users[$rand_index];
+            } while($user->request != NULL);
+
+            return $user->id;
         },
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
