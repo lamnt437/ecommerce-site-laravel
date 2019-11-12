@@ -33,5 +33,6 @@ class Request extends Model
 
     public function reject() {
         $this->status = true;
+        $this->save();
     }
 }
